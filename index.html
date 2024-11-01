@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Base transitions for smooth dark mode toggle */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Dark mode styles */
+        .dark {
+            background-color: #0f172a;  /* Darker blue-gray */
+            color: #e2e8f0;
+        }
+
+        /* Card backgrounds */
+        .dark .bg-white {
+            background-color: #1e293b;  /* Darker background for cards */
+            border: 1px solid #334155;  /* Subtle border */
+        }
+
+        /* Text colors */
+        .dark .text-gray-700,
+        .dark .text-gray-600 {
+            color: #94a3b8;  /* Lighter gray for better readability */
+        }
+
+        .dark .text-gray-900 {
+            color: #f1f5f9;  /* Almost white for main text */
+        }
+
+        /* Skills items */
+        .dark .bg-gray-100 {
+            background-color: #334155;  /* Darker background for skill items */
+            color: #e2e8f0;
+        }
+
+        .dark .skill-item:hover {
+            background-color: #3b82f6 !important;  /* Brighter blue on hover */
+            color: white !important;
+        }
+
+        /* Navigation buttons */
+        .dark .bg-gray-200 {
+            background-color: #334155;  /* Darker background for nav buttons */
+        }
+
+        .dark .bg-gray-200:hover {
+            background-color: #475569;  /* Lighter on hover */
+        }
+
+        /* Education button */
+        .dark .bg-blue-500 {
+            background-color: #3b82f6;  /* Brighter blue */
+        }
+
+        .dark .bg-blue-500:hover {
+            background-color: #2563eb;  /* Darker blue on hover */
+        }
+
+        /* Shadows */
+        .dark .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Border colors */
+        .dark .border-b {
+            border-color: #334155;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .dark .loading {
+            background-color: #0f172a;
+        }
+
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Angel</h1>
+            <nav class="flex items-center space-x-4">
+                <a href="https://github.com/angelandidkw" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" aria-label="GitHub">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/angel-marquez-chavarria-4707ba328/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" aria-label="LinkedIn">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" aria-label="Toggle dark mode">
+                    <i data-lucide="moon" class="w-5 h-5"></i>
+                </button>
+            </nav>
+        </header>
+
+        <main class="space-y-8">
+            <section class="bg-white shadow-md rounded-lg overflow-hidden">
+                <h2 class="text-xl font-semibold p-4 border-b">About Me</h2>
+                <div class="p-4 flex items-center space-x-6">
+                    <img src="7eee0e7fe13a34efbda8d086d1ba47b0.webp" alt="Profile picture" class="rounded-full w-32 h-32">
+                    <p class="text-lg">
+                        Passionate about technology and programming, I'm constantly expanding my knowledge in computer science and networking. With a keen interest in solving complex problems, I strive to create efficient and innovative solutions.
+                    </p>
+                </div>
+            </section>
+
+            <section class="bg-white shadow-md rounded-lg overflow-hidden">
+                <h2 class="text-xl font-semibold p-4 border-b">Skills</h2>
+                <div class="p-4">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="skill-item bg-gray-100 rounded-md p-2 text-center transform transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-lg">JavaScript</div>
+                        <div class="skill-item bg-gray-100 rounded-md p-2 text-center transform transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-lg">React</div>
+                        <div class="skill-item bg-gray-100 rounded-md p-2 text-center transform transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-lg">Node.js</div>
+                        <div class="skill-item bg-gray-100 rounded-md p-2 text-center transform transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-lg">Python</div>
+                        <div class="skill-item bg-gray-100 rounded-md p-2 text-center transform transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-lg">Networking</div>
+                        <div class="skill-item bg-gray-100 rounded-md p-2 text-center transform transition-all duration-300 hover:scale-110 hover:bg-blue-500 hover:text-white hover:shadow-lg">Git</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white shadow-md rounded-lg overflow-hidden">
+                <h2 class="text-xl font-semibold p-4 border-b text-center">Education & Certification</h2>
+                <div class="p-4 flex justify-center">
+                    <a href="education.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        View Education & Certifications
+                    </a>
+                </div>
+            </section>
+
+            <section class="bg-white shadow-md rounded-lg overflow-hidden">
+                <h2 class="text-xl font-semibold p-4 border-b">Contact Me</h2>
+                <div class="p-4">
+                    <div class="flex flex-col space-y-4">
+                        <a href="mailto:your.email@example.com" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500 transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            <span>angelmarquchavarri554@gmail.com</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/angel-marquez-chavarria-4707ba328/" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500 transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-12 text-center text-sm text-gray-600">
+            © <span id="currentYear"></span> Angel. All rights reserved.
+        </footer>
+    </div>
+
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        const moonIcon = darkModeToggle.querySelector('i');
+
+        darkModeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                moonIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                moonIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loading');
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
